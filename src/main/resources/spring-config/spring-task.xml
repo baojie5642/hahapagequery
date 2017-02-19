@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.baojie.service.manager" />
+
+	<task:scheduler id="levelOneScheduler" pool-size="4" />
+	<task:scheduled-tasks scheduler="levelOneScheduler">
+		<task:scheduled ref="taskManager" method="levelOneLoopPageQuery"
+			initial-delay="1000" fixed-delay="4000" />
+	</task:scheduled-tasks>
+
+	<task:scheduler id="levelTwoScheduler" pool-size="4" />
+	<task:scheduled-tasks scheduler="levelTwoScheduler">
+		<task:scheduled ref="taskManager" method="levelTwoLoopPageQuery"
+			initial-delay="1000" fixed-delay="3000" />
+	</task:scheduled-tasks>
+
+	<task:scheduler id="levelThreeScheduler" pool-size="4" />
+	<task:scheduled-tasks scheduler="levelThreeScheduler">
+		<task:scheduled ref="taskManager" method="levelThreeLoopPageQuery"
+			initial-delay="1000" fixed-delay="2000" />
+	</task:scheduled-tasks>
+
+	<task:scheduler id="levelFourScheduler" pool-size="4" />
+	<task:scheduled-tasks scheduler="levelFourScheduler">
+		<task:scheduled ref="taskManager" method="levelFourLoopPageQuery"
+			initial-delay="1000" fixed-delay="1000" />
+	</task:scheduled-tasks>
+
+</beans>
+
+
+
+
