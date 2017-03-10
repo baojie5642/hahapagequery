@@ -54,7 +54,7 @@ public class LoopRecordRunner implements Runnable {
 						}
 					}
 				} else {
-					waitForPage(100);
+					waitForPage(100);//不能去掉，有可能造成cpu使用100%
 					continue retry;// 可以休息100毫秒，因为这个时候可能真的没有数据了，或者数据查询出现了延迟
 				}
 			} else {

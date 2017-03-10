@@ -54,6 +54,7 @@ public class QueryManager implements InitializingBean, DisposableBean {
 	public void pageQueryLoopTable(final QueryPageInfo loopTablePageInfo, final int threadNum,
 			final Semaphore taskFinish) {
 		if (!businessButton.get()) {
+			taskFinish.release(1);
 			return;
 		}
 		final Semaphore pageQueryFinish = initSema(threadNum);
@@ -167,6 +168,7 @@ public class QueryManager implements InitializingBean, DisposableBean {
 		Future<?> future = null;
 		for (int i = 0; i < listSize; i++) {
 			future = futureList.get(i);
+			if(null!=future)
 			future.cancel(true);
 		}
 	}

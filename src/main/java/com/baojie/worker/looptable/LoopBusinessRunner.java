@@ -31,7 +31,7 @@ public class LoopBusinessRunner implements Runnable {
 			loopTable = getFromQueue();
 			if (null != loopTable) {
 				//业务逻辑
-				System.out.println(loopTable);
+				//System.out.println(loopTable);
 			} else {
 				continue retry;
 			}
